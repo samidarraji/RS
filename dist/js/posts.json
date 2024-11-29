@@ -1,0 +1,70 @@
+[
+    {
+        "id": 1,
+        "userID": 1, 
+        "content": {
+            "text": "Aujourd'hui, j'ai découvert un nouveau parc magnifique !",
+            "photo": "./dist/img/post/pexels-tobiasbjorkli-3846447.jpg"
+        },
+        "reactions": {
+            "like": 10,
+            "love": 5,
+            "dislike": 1
+        },
+        "comments": [
+            {
+                "id": 105,
+                "userID": 5,
+                "author": "Bob Martin",
+                "text": "Ça a l'air génial !",
+                "date": "2024-11-04 10:15:00"
+            },
+            {
+                "id": 106,
+                "userID": 6,
+                "author": "Claire Roger",
+                "text": "J'aimerais tellement y aller aussi 😊",
+                "date": "2024-11-04 11:00:00"
+            }
+        ],
+        "date": "2024-11-04T09:30:00"
+    },
+    {
+        "id": 2,
+        "userID": 2,
+        "content": {
+            "text": "Quelqu'un connaît une bonne recette de tarte aux pommes ?",
+            "photo": ""
+        },
+        "reactions": {
+            "like": 3,
+            "love": 2,
+            "dislike": 0
+        },
+        "comments": [
+            {
+                "id": 103,
+                "userID": 7,
+                "author": "Marie Leblanc",
+                "text": "Je t'enverrai la mienne en message privé 😉",
+                "date": "2024-11-04 14:30:00"
+            }
+        ],
+        "date": "2024-11-04T12:45:00"
+    },
+    {
+        "id": 3,
+        "userID": 3,
+        "content": {
+            "text": "Petite balade en montagne aujourd'hui 🌲🌄",
+            "photo": "./dist/img/post/pexels-silviopelegrin-29169114.jpg"
+        },
+        "reactions": {
+            "like": 15,
+            "love": 8,
+            "dislike": 0
+        },
+        "comments": [],
+        "date": "2024-11-04 08:00:00"
+    }
+]

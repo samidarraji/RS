@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST RS</title>
+    <link rel="stylesheet" href="./dist/css/dist.styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- logo -->
+        <div class="logo">
+            <img src="./dist/img/image.png" alt="AZUR TECH" srcset="">
+        </div>
+        <!--search bar -->
+        <Section class="search">
+                <div id="search-bar">
+                    <input type="text" placeholder="Search..." id="search-friend" onkeyup="appearBtnDelete()">
+                    <a id="delete-txt-search-friend">X</a>
+                </div>  
+        </Section>
+        <!-- navigation -->
+        <nav>   
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    mail
+                </span>
+            </a>
+            <a href="#">
+                    <span class="material-symbols-outlined">
+                        notifications
+                    </span>
+            </a>    
+            <a href="#">
+                <span class="material-symbols-outlined">
+                    settings
+                </span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main_wrraper">
+
+        <!-- Profil and banner -->
+        <div class="profil">
+            <div class="cover">
+                <a href="#">
+                    <img src="./dist/img/cover.jpg" alt="bannière" srcset="">
+                </a>
+            </div>
+            <!-- profile -->          
+                <div class="profil_picture">
+                    <a href="#">
+                        <img src="./dist/img/pict_profil2.jpg" alt="photo de profil" srcset="">
+                    </a>
+                </div>
+        </div>
+        <!-- user name -->    
+        <div class="name-content">
+            <h4 class="name-user" id="name-user">
+                Sami Darraji
+            </h4>
+        </div>
+        
+        <main>
+            
+            <!-- Sidebar gauche -->
+            <aside class="sidebar gauche block-radius">
+                <h2>Amis</h2>
+                <ul>
+                    <li>Ami 1</li>
+                    <li>Ami 2</li>
+                    <li>Ami 3</li>
+                </ul>
+            </aside>
+    
+            <!-- Contenu central -->
+            <section class="contenu block-radius">
+                <!-- new post block -->
+                <div class="add-new-txt-block">
+                    <div class="txt-block" id="new-post">
+                        <p id="how-are-you">How are you !</p>
+                    <div class="user-picture-post">
+                        <a href="#">
+                            <img src="./dist/img/pict_profil2.jpg" alt="photo de profil" srcset="">
+                        </a>
+                    </div>
+                     <textarea class="input-text" id="input-text" value="" ></textarea>
+                        <input type="button" class="button-share cancel-btn" id="cancel-share" value="X">
+                    </div>
+                    <div class="write-post">
+                        <textarea class="input-write-text" id="input-write-text" placeholder="Some text here.."></textarea>
+                        <a href="#" class="icone-post" id="add-picture-post">
+                            <span class="material-symbols-outlined">
+                                add_photo_alternate
+                                </span>
+                        </a>
+                        <a href="#" class="icone-post" id="add-video-post">
+                            <span class="material-symbols-outlined">
+                                smart_display
+                                </span>
+                        </a>
+                        <input type="button" class="button-share" id="share-new-post-btn" value="Share">
+                    </div>
+                   
+                </div>
+
+                <!-- content type text -->
+                <div id="feed">
+                </div>
+
+                <!--
+                 <div id="timeline">
+                    
+                    <div class="container-text container-post-global">
+                        <!-- user picture and menu signal btn -->
+                        <div class="header-post-block">
+                            <div class="user-profil-and-name">
+                                <div class="user-picture-post">
+                                    <a href="#">
+                                        <img src="./dist/img/pict_profil2.jpg" alt="photo de profil" srcset="">
+                                    </a>
+                                </div>
+                                <h4 >Sami Darraji</h4>
+                            </div>   
+                            <a href="#" class="menu-signal">
+                                <span class="material-symbols-outlined">
+                                    more_horiz
+                                </span>
+                            </a> 
+                        </div>
+                        <!-- block text -->
+                        <div class="text">
+                            <p id="get-text">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid quis vel eos velit modi perspiciatis, tenetur alias voluptates maiores assumenda. Consequuntur omnis nemo in vero? Soluta totam reiciendis suscipit vitae!
+                            </p>
+                        </div>   
+                     </div>
+                 </div>
+                -->
+                
+
+            </section>
+    
+            <!-- Sidebar droite -->
+            <aside class="sidebar droite block-radius">
+                <h2>Suggestions</h2>
+                <ul>
+                    <li>Suggestion 1</li>
+                    <li>Suggestion 2</li>
+                    <li>Suggestion 3</li>
+                </ul>
+            </aside>
+        </main>
+    
+    </div>
+    <script src="./dist/js/main.js"></script>
+</body>
+</html>

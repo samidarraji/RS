@@ -1,0 +1,30 @@
+[
+    {
+        "postId": 1,
+        "comments": [
+            {
+                "id": 1,
+                "userID": 2,
+                "text": "Super post, merci pour le partage !",
+                "date": "2024-11-21 10:00:00"
+            },
+            {
+                "id": 2,
+                "userID": 3,
+                "text": "Très intéressant !",
+                "date": "2024-11-21 10:30:00"
+            }
+        ]
+    },
+    {
+        "postId": 2,
+        "comments": [
+            {
+                "id": 1,
+                "userID": 1,
+                "text": "J'adore ce contenu !",
+                "date": "2024-11-21 11:00:00"
+            }
+        ]
+    }
+]
