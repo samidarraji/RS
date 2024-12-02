@@ -23,16 +23,19 @@ header {
   /** navigation */
   /** search bar */
 }
+/* LOGO ENTREPRISE */
 header .logo img {
   width: 50px;
   height: auto;
 }
+/* NAV BAR */
 header nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+/* Notifications, Messages and settings links*/
 header nav a {
   color: white;
   text-decoration: none;
@@ -56,6 +59,7 @@ header nav .headerBtn {
   font-size: 32px;
   cursor: pointer;
 }
+/* Container dropdown for Notifications, Messages and settings */
 header nav .dropdown-menu {
   display: none; /* Cacher le dropdown par défaut */
   position: absolute;
@@ -80,17 +84,25 @@ header nav .dropdown-menu ul li {
   color: #5e5def;
   font-size: 12px;
 }
+header nav .dropdown-menu ul .unread{
+  background: #c7c7e069  !important;
+}
+
 header nav .dropdown-menu ul li .author img{
   width: 30px;
   height: 30px;
+  box-shadow: none;
 }
 header nav .dropdown-menu ul li:last-child {
   border-bottom: none;
 }
 header nav .dropdown-menu ul li:hover {
-  background-color: #f0f0f0;
+  background: #9a9af582 !important;
+  color: #5d5dd3 !important;
   cursor: pointer;
 }
+
+/* Search bar in header */
 header .search #search-bar {
   display: flex;
   align-items: center;
@@ -139,6 +151,8 @@ header .search #search-bar a {
   min-height: 100vh;
   background-color: #efecec;
 }
+
+/* btn to delete comment */
 .main_wrraper .btn-delete {
   cursor: pointer;
   position: absolute;
@@ -242,7 +256,7 @@ header .search #search-bar a {
   background-color: #5E5DF0;
   border: none;
   color: white;
-  padding: 15px 29px;
+  padding: 14px 29px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -252,7 +266,6 @@ header .search #search-bar a {
   right: 8px;
   position: absolute;
   bottom: 4px;
-  height: 45px;
 }
 .contenu .add-new-txt-block .cancel-btn {
   padding: 7px 16px !important;
@@ -320,13 +333,13 @@ header .search #search-bar a {
   outline: none !important;
 }
 .contenu .add-new-txt-block .write-post .icone-post {
-  padding: 10px 8px 8px 10px;
-  width: 45px;
-  height: 45px;
-  display: inline-block;
-  background: #5e5df0;
-  color: #fff;
-  border-radius: 35px;
+    padding: 7px 7px;
+    width: 38px;
+    height: 38px;
+    display: inline-block;
+    background: #5e5df0;
+    color: #fff;
+    border-radius: 35px;
 }
 .contenu .add-new-txt-block .write-post #share-new-post-btn {
   bottom: auto !important;
