@@ -23,12 +23,31 @@
                 </div>  
         </Section>
         <!-- navigation -->
-        <nav>   
-            <a href="#">
-                <span class="material-symbols-outlined">
-                    mail
-                </span>
-            </a>
+        <nav>
+            <div class="dropdown">
+                <a href="#" id="dropdownButtonMessage" class="headerBtn" onclick="toggleDropdown(1)">
+                    <span class="material-symbols-outlined">mail</span>
+                </a>
+                <div id="dropdownMenuMessage" class="dropdown-menu">
+                    <ul id="ulMessages">
+                        <!-- Les messages seront ajoutés ici via JavaScript -->                      
+                    </ul>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" id="dropdownButtonMessage" class="headerBtn" onclick="toggleDropdown(2)">
+                    <span class="material-symbols-outlined">notifications</span>
+                </a>
+                <div id="dropdownMenuNotification" class="dropdown-menu">
+                    <ul id="ulNotifications">
+                        <!-- Les notifiacations seront ajoutés ici via JavaScript -->
+                         <li> Demande d'ajout de la part de Patrice</li>                      
+                         <li> tu as reçu un like sur ...</li>                      
+                         <li> Sophie Muller à commenter ton post</li>                      
+                    </ul>
+                </div>
+            </div>
+            
             <a href="#">
                     <span class="material-symbols-outlined">
                         notifications
@@ -43,7 +62,8 @@
     </header>
 
     <!-- Main Content -->
-    <div class="main_wrraper">
+    <div class="main_wrraper" >
+        <div id="masqueUL"></div>
 
         <!-- Profil and banner -->
         <div class="profil">
@@ -112,9 +132,7 @@
                 <!-- content type text -->
                 <div id="feed">
                 </div>
-
-                
-                 <div id="timeline">
+                <div id="timeline">
                     
                     <div class="container-text container-post-global">
                         <!-- user picture and menu signal btn -->
@@ -141,7 +159,6 @@
                         </div>   
                      </div>
                  </div>
-
             </section>
     
             <!-- Sidebar droite -->
