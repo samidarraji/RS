@@ -18,9 +18,12 @@
         <!--search bar -->
         <Section class="search">
                 <div id="search-bar">
-                    <input type="text" placeholder="Search..." id="search-friend" onkeyup="appearBtnDelete()">
-                    <a id="delete-txt-search-friend">X</a>
+                    <input type="text" placeholder="Search..." id="search-friend" onkeyup="searchUsers()">
+                    <a id="delete-txt-search-friend" style="opacity: 0;" onclick="clearSearch()">X</a>
                 </div>  
+                <div id="user-results">
+                    <!-- Les résultats de recherche seront affichés ici -->
+                </div>
         </Section>
         <!-- navigation -->
         <nav>
