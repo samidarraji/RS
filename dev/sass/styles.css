@@ -52,22 +52,21 @@ header nav a .material-symbols-outlined {
 header nav .dropdown {
   position: relative;
 }
-header nav .headerBtn {
+header nav #dropdownButton {
   font-size: 32px;
   cursor: pointer;
 }
 header nav .dropdown-menu {
   display: none; /* Cacher le dropdown par défaut */
   position: absolute;
-  top: 39px; /* Positionner le menu juste en dessous de l'icône */
-  right: 0;
+  top: 35px; /* Positionner le menu juste en dessous de l'icône */
+  left: 0;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   z-index: 100;
-  overflow: hidden;
 }
 header nav .dropdown-menu ul {
   list-style: none;
@@ -77,12 +76,6 @@ header nav .dropdown-menu ul {
 header nav .dropdown-menu ul li {
   padding: 10px;
   border-bottom: 1px solid #ddd;
-  color: #5e5def;
-  font-size: 12px;
-}
-header nav .dropdown-menu ul li .author img{
-  width: 30px;
-  height: 30px;
 }
 header nav .dropdown-menu ul li:last-child {
   border-bottom: none;
@@ -754,12 +747,4 @@ main .add-comment button:active {
   .main_wrraper .name-content {
     top: 159px;
   }
-}
-
-div#masqueUL {
-  width: 99vw;
-  height: 100vh;
-  z-index: 200;
-  display: none;
-  position: absolute;
-}
+}/*# sourceMappingURL=styles.css.map */
