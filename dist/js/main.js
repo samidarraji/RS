@@ -89,7 +89,7 @@ cancelShareBtn.addEventListener('click', function() {
               const userID = post.userID;
   
               // Récupérer les données de l'utilisateur de manière asynchrone
-              const user = await loadUsers(userID);
+              const user = await findUsers(userID);
   
               // Récupérer les commentaires du Local Storage s'il y en a
               const localStorageComments = savedComments[postId] || [];
@@ -99,8 +99,6 @@ cancelShareBtn.addEventListener('click', function() {
   
               // Calculer le nombre de commentaires pour ce post
               const nbrComments = combinedComments.length;
-              //console.log(postId);
-              //console.log(nbrComments);
   
               // Fonction pour afficher la photo si elle existe
               const findPhoto = function (post) {
@@ -126,7 +124,7 @@ cancelShareBtn.addEventListener('click', function() {
                      <div class="comments" id="comments-${post.id}">
                           ${await Promise.all(combinedComments.map(async comment => {
                               const userID_comment = comment.userID;
-                              const objUserComment = await loadUsers(userID_comment);
+                              const objUserComment = await findUsers(userID_comment);
                               
                               
                               return `
@@ -160,8 +158,8 @@ cancelShareBtn.addEventListener('click', function() {
       }
   }
   loadPosts();
-  
-  async function loadUsers(id) {
+// Fonction pour Retrouver les utilisateurs 
+ async function findUsers(id) {
       // Charger les utilisateurs depuis le JSON local
       const response = await fetch('./dist/js/users.json');
       const users = await response.json();
@@ -179,10 +177,21 @@ cancelShareBtn.addEventListener('click', function() {
       return {
           name: user.author.name, picture: user.author.profilePicture // Assurez-vous d'utiliser la bonne propriété
       };
-  }
+}
+// Fonction pour charger les utilisateurs 
+async function loadUsers() {
+    try {
+        const response = await fetch('./dist/js/users.json');
+        const users = await response.json();
+        return users;  // Retourner tous les utilisateurs
+    } catch (error) {
+        console.error('Erreur lors du chargement des utilisateurs:', error);
+        return [];  // Retourne un tableau vide en cas d'erreur
+    }
+}
   
-  // Fonction pour agrandir l'image en plein écran
-  function agrandirPhoto(photoUrl) {
+// Fonction pour agrandir l'image en plein écran
+function agrandirPhoto(photoUrl) {
       const fullScreenImage = document.createElement('div');
       fullScreenImage.className = 'fullscreen';
       fullScreenImage.innerHTML = `<img src="${photoUrl}" class="fullscreen-image">`;
@@ -192,10 +201,10 @@ cancelShareBtn.addEventListener('click', function() {
       fullScreenImage.addEventListener('click', () => {
           document.body.removeChild(fullScreenImage);
       });
-  }
+}
   
-  // Fonction pour ajouter un commentaire
-  function addComment(postId, numberComments) {
+// Fonction pour ajouter un commentaire
+function addComment(postId, numberComments) {
       const input = document.getElementById(`comment-input-${postId}`);
       const commentText = input.value.trim();
       const idcomment = numberComments+1;
@@ -233,10 +242,10 @@ cancelShareBtn.addEventListener('click', function() {
       if (!savedComments[postId]) savedComments[postId] = [];
       savedComments[postId].push(newComment);
       localStorage.setItem('comments', JSON.stringify(savedComments));
-  }
+}
   
-  // Fonction pour supprimer les commentaire
-  function deleteComment(postId, commentId) {
+// Fonction pour supprimer les commentaire
+function deleteComment(postId, commentId) {
   
       // Supprimer le commentaire du DOM
       const commentElement = document.getElementById(`${postId}-${commentId}`);
@@ -251,11 +260,10 @@ cancelShareBtn.addEventListener('click', function() {
           localStorage.setItem('comments', JSON.stringify(savedComments));
       }
       
-  }
+}
 // deleteComment(1, 3); //exemple delete
   
 // Fonction pour charger les messages depuis un fichier JSON et ajouter les éléments au dropdown
-/** Charger les messages et afficher le dropdown avec photo de l'utilisateur */
 async function loadMessages() {
     try {
         // Chargement du fichier JSON contenant les messages
@@ -268,7 +276,7 @@ async function loadMessages() {
         // Ajouter chaque message dans le dropdown
         for (const message of messages) {
             // Récupérer les données de l'utilisateur de manière asynchrone
-            const user = await loadUsers(message.senderID); // Chargement de l'utilisateur par son ID
+            const user = await findUsers(message.senderID); // Chargement de l'utilisateur par son ID
 
             // Créer l'élément li pour le message
             const li = document.createElement('li');
@@ -323,7 +331,59 @@ document.getElementById('masqueUL').addEventListener('click', (event) => {
     dropdownMenuNotification.style.display = 'none';
     dropdownMenuMessage.style.display = 'none';
     document.getElementById('masqueUL').style.display = 'none';
+    clearSearch();
 });
 
 // Charger les messages lors de l'initialisation
 loadMessages();
+
+
+ // Fonction pour rechercher des utilisateurs en fonction du texte saisi
+async function searchUsers() {
+    const searchTerm = document.getElementById('search-friend').value.toLowerCase();
+    const resultsContainer = document.getElementById('user-results');
+    const deleteBtn = document.getElementById('delete-txt-search-friend');
+
+    // Afficher ou cacher le bouton de suppression selon si la barre de recherche est vide ou non
+    if (searchTerm === "") {
+        deleteBtn.style.opacity = 0; // Cacher le bouton de suppression si rien n'est saisi
+    } else {
+        deleteBtn.style.opacity = 1; // Afficher le bouton de suppression si du texte est saisi
+    }
+
+    try {
+        // Charger les utilisateurs depuis le fichier JSON
+        const users = await loadUsers(); // Charger tous les utilisateurs
+
+        // Filtrer les utilisateurs qui correspondent à la recherche
+        const filteredUsers = users.filter(user => user.author.name.toLowerCase().includes(searchTerm));
+
+        // Afficher les résultats de la recherche
+        resultsContainer.innerHTML = ''; // Réinitialiser le conteneur de résultats
+        if (filteredUsers.length > 0) {
+            filteredUsers.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.classList.add('user-result');
+                userElement.innerHTML = `
+                    <img src="${user.author.profilePicture}" alt="${user.author.name}">
+                    <h4>${user.author.name}</h4>
+                `;
+                document.getElementById('masqueUL').style.display = 'block';
+                resultsContainer.appendChild(userElement);
+            });
+        } else {
+            resultsContainer.innerHTML = '<p>Aucun utilisateur trouvé.</p>';
+        }
+    } catch (error) {
+        console.error('Erreur lors de la recherche des utilisateurs:', error);
+    }
+}
+
+// Effacer le texte de la barre de recherche
+function clearSearch() {
+    document.getElementById('search-friend').value = '';
+    //searchUsers(); // Rechercher à nouveau pour afficher tous les utilisateurs
+    const resultsContainer = document.getElementById('user-results');
+    resultsContainer.innerHTML = "";
+}
+
