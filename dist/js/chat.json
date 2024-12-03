@@ -50,6 +50,36 @@
                 "date": "2024-11-21 12:41:00"
             }
         ]
+    },
+    {
+        "discussionID": 3,
+        "messages": [
+            {
+                "MessageID": 1, 
+                "userID": 7, 
+                "text": "Hello Sami!, Votre abonnement a été mis à jour.",
+                "date": "2024-11-21 10:00:00"
+            },
+            {
+                "idMessage": 2,
+                "userID": 4,
+                "text": "Hi Marie",
+                "date": "2024-11-21 11:30:00"
+            }
+            
+        ]
+    },
+    {
+        "discussionID": 4,
+        "messages": [
+            {
+                "MessageID": 1, 
+                "userID": 5, 
+                "text": "salut Sami , notre rendez-vous comme convenu ?",
+                "date": "2024-11-21 10:00:00"
+            }
+            
+        ]
     }
     
 ]
