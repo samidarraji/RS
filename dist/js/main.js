@@ -336,7 +336,7 @@ async function searchUsers() {
 
     try {
         // Charger les utilisateurs depuis le fichier JSON
-        const users = await loadUsers(); // Charger tous les utilisateurs
+        const users = await loadUsers(); // Charger tous les utilisateurs du reseau
         const friends = await loadFriends() // Charger tous les amis
 
         // Filtrer les utilisateurs qui correspondent à la recherche
@@ -354,29 +354,35 @@ async function searchUsers() {
                  const friend = friends.find(friend => friend.id === user.id);
                  
                  if(friend){
-                    //console.log(user.id + " est dans votre liste d'amis: " +friend.id);
-                        userElement.innerHTML = `
-                        <a href="#" class="link-profil-friend">
-                            <img src="${user.author.profilePicture}" alt="${user.author.name}">
-                            <h4>${user.author.name}</h4>
-                        </a>`;
-                
+                    if(friend.id != 4){
+                        userElement.innerHTML = ` 
+                        <div class="users">
+                            <a href="#" class="link-profil-friend">
+                                <img src="${user.author.profilePicture}" alt="${user.author.name}">
+                                <h4>${user.author.name}</h4>
+                            </a>
+                            <a href="#" class="btn-chat">
+                                <span class="material-symbols-outlined">
+                                    chat
+                                </span>
+                            </a>
+                        </div>`;
+                    }
                     
                  }else{
                     userElement.innerHTML = `
-                    <a href="#" class="link-profil-friend">
-                        <img src="${user.author.profilePicture}" alt="${user.author.name}">
-                        <h4>${user.author.name}</h4>
-                    </a>
-                    <a href="#" class="btn-add-friend">
-                        <span class="material-symbols-outlined">
-                            person_add
-                        </span>
-                    </a>`;
+                    <div class="users">
+                        <a href="#" class="link-profil-friend">
+                            <img src="${user.author.profilePicture}" alt="${user.author.name}">
+                            <h4>${user.author.name}</h4>
+                        </a>
+                        <a href="#" class="btn-add-friend">
+                            <span class="material-symbols-outlined">
+                                person_add
+                            </span>
+                        </a>
+                    </div>`;
                  }
-                 
-
-                
                 
                 document.getElementById('masqueUL').style.display = 'block';
                 resultsContainer.appendChild(userElement);
@@ -391,10 +397,10 @@ async function searchUsers() {
 
 // Fonction pour gérer l'affichage du dropdown
 function toggleDropdown(element) {
-    
     const dropdownMenuMessage = document.getElementById('dropdownMenuMessage');
     const dropdownMenuNotification = document.getElementById('dropdownMenuNotification');
     document.getElementById('masqueUL').style.display = 'block';
+    clearSearch();
 
     if(element === 1){
         if(dropdownMenuNotification.style.display === 'block'){
@@ -426,7 +432,15 @@ document.getElementById('masqueUL').addEventListener('click', (event) => {
     dropdownMenuNotification.style.display = 'none';
     dropdownMenuMessage.style.display = 'none';
     document.getElementById('masqueUL').style.display = 'none';
+    document.getElementById('search').style.display= "none";
     clearSearch();
+});
+
+document.getElementById('icone-search').addEventListener('click', (event) => {
+    const search = document.getElementById('search');
+    const masqueSearch = document.getElementById('masqueUL');
+    search.style.display = search.style.display === 'block' ? 'none' : 'block';
+    masqueSearch.style.display = masqueSearch.style.display === 'block' ? 'none' : 'block';
 });
 
 /************************* */

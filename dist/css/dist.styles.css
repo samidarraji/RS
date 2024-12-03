@@ -102,48 +102,6 @@ header nav .dropdown-menu ul li:hover {
   cursor: pointer;
 }
 
-/* Search bar in header */
-/*
-header .search #search-bar {
-  display: flex;
-  align-items: center;
-  position: relative;
-  border-radius: 50px;
-  background: #fafafa;
-  padding-right: 3px;
-  border: 1px solid #fafafa;
-  box-shadow: 0px 4px 13px -4px rgba(0, 0, 0, 0.1);
-}
-header .search #search-bar input {
-  width: 220px;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #fafafa;
-  border-radius: 50px;
-  background-color: #fafafa;
-  transition: width 0.4s ease-in-out;
-  outline: none;
-}
-header .search #search-bar input:focus {
-  width: 280px;
-}
-header .search #search-bar a {
-  opacity: 0;
-  background-color: #ffffff;
-  color: #919191;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px !important;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 13px -4px rgba(0, 0, 0, 0.1);
-  transition: 0.2s ease-in-out;
-}
-*/
 /** global container */
 .main_wrraper {
   position: absolute;
@@ -189,7 +147,7 @@ header .search #search-bar a {
   overflow: hidden;
   bottom: 17.5%;
   left: 20px;
-  border-radius: 15%;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,16 +159,17 @@ header .search #search-bar a {
   height: auto;
 }
 .main_wrraper .name-content {
-  background: #fff;
-  border-radius: 35px;
+  background: #fff; 
+  border-radius: 13px;
   margin: 20px;
   display: flex;
   justify-content: start;
   align-items: center;
   padding: 10px 20px;
-  top: 312px;
+  top: 292px;
   position: absolute;
   width: 96%;
+  height: 62px;
 }
 
 .user-profil-and-name {
@@ -733,6 +692,9 @@ main .add-comment button:active {
 }
 
 /** Search friend bar */
+header .search{
+  display: block;
+}
 header .search #search-bar {
   position: relative;
   width: 300px;
@@ -767,12 +729,15 @@ header .search #user-results {
     overflow: hidden;
 }
 
-header .search #user-results .user-result {
+header .search #user-results .user-result ,header .search #user-results .user-result .users {
   display: flex;
   align-items: center;
-  padding: 7px;
   cursor: pointer;
   justify-content: space-between;
+}
+header .search #user-results .user-result .users {
+  width: 100%;
+  padding: 7px;
 }
 header .search #user-results .user-result:hover {
   background: #9a9af582 ;
@@ -786,7 +751,7 @@ header .search #user-results .user-result  .link-profil-friend {
   width: calc(100% - 50px);
   justify-content: start;
 }
-header .search #user-results .user-result .btn-add-friend {
+header .search #user-results .user-result .btn-add-friend, header .search #user-results .user-result .btn-chat {
   margin-right: 5px;
   width: 40px;
   height: 40px;
@@ -808,6 +773,9 @@ header .search #user-results .user-result h4 {
   margin: 0;
   font-size: 16px;
 }
+header nav .icone-search{
+  display: none;
+}
 
 /** css for tablette and mobile */
 @media screen and (max-width: 700px) {
@@ -816,7 +784,7 @@ header .search #user-results .user-result h4 {
   }
   main {
     flex-direction: column;
-    margin: 30px 10px 10px;
+    margin: 66px 10px 10px;
   }
   main .gauche {
     margin-right: 0px;
@@ -844,6 +812,7 @@ header .search #user-results .user-result h4 {
   }
   .main_wrraper .name-content {
     top: 159px;
+    width: 94%;
   }
 }
 
@@ -870,6 +839,7 @@ div#masqueUL {
     margin-top: 5px;
     order: 3;
     width: 100%;
+    display: none;
   }
   header .search #search-bar{
     width: 100%;
@@ -878,5 +848,12 @@ div#masqueUL {
     width: 95%;
     min-width: auto;
   }
+  header nav .icone-search{
+    display: flex;
+  }
 }
-
+@media screen and (min-width: 501px) {
+  header .search{
+    display: block !important;
+  }
+}
