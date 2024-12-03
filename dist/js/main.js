@@ -441,8 +441,15 @@ async function listFriendsSidebar() {
                 <div class="friend">
                     <img src="${friend.author.profilePicture}" alt="${friend.author.name}" class="friend-picture">
                     <div class="friend-info">
+                        <div class="menu">
                         <strong>${friend.author.name}</strong>
+                            <button class="material-symbols-outlined">
+                                chat
+                            </button>
+                            
+                        </div>
                         <small>Ajouté le : ${new Date(friend.date).toLocaleDateString()}</small>
+                        
                     </div>
                 </div>
             `;

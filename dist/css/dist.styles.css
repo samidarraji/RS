@@ -102,6 +102,15 @@ header nav .dropdown-menu ul li:hover {
   cursor: pointer;
 }
 
+header nav .dropdown-menu #ulNotifications li{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+}
+header nav .dropdown-menu #ulNotifications li span{
+  margin-right: 5px;
+}
 /** global container */
 .main_wrraper {
   position: absolute;
@@ -366,8 +375,27 @@ main .droite {
 .friend-info {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
+.friend-info  .menu{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  
+}
+
+.friend-info  .menu button{
+  cursor: pointer;
+  border: 0;
+  background: #ffffff00;
+  color: #5e5def;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+}
 .friend-info strong {
   font-size: 1rem;
   color: #333;
@@ -797,7 +825,10 @@ header .search #user-results .user-result .btn-add-friend, header .search #user-
   width: 40px;
   height: 40px;
   justify-content: center;
-
+}
+header .search #user-results .user-result .btn-add-friend:hover, header .search #user-results .user-result .btn-chat:hover, .friend-info .menu  button:hover{
+  background: #ffffffad;
+  border-radius: 50%;
 }
 header .search #user-results .user-result .btn-add-friend .material-symbols-outlined{
   font-size: 30px !important;
