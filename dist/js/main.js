@@ -425,6 +425,38 @@ function clearSearch() {
     document.querySelector('#delete-txt-search-friend').style.opacity=0;
 }
 
+async function listFriendsSidebar() {
+    try {
+        // Charger les données depuis le fichier JSON
+        const response = await fetch('./dist/js/friends.json');
+        const friends = await response.json();
+
+        // Récupérer le conteneur où afficher les amis
+        const friendsContainer = document.getElementById('friends-container');
+
+        // Générer le HTML pour chaque ami
+        friends.forEach(friend => {
+            if(friend.id != 4){
+                const friendHTML = `
+                <div class="friend">
+                    <img src="${friend.author.profilePicture}" alt="${friend.author.name}" class="friend-picture">
+                    <div class="friend-info">
+                        <strong>${friend.author.name}</strong>
+                        <small>Ajouté le : ${new Date(friend.date).toLocaleDateString()}</small>
+                    </div>
+                </div>
+            `;
+            // Ajouter le HTML au conteneur
+            friendsContainer.innerHTML += friendHTML;   
+            }
+           
+        });
+    } catch (error) {
+        console.error('Erreur lors du chargement des amis :', error);
+    }
+}
+
+
 
 // Gestion du clic sur l'icône pour masquer le dropdown en dehor de header
 document.getElementById('masqueUL').addEventListener('click', (event) => {
@@ -451,3 +483,6 @@ loadMessages();
 
 // Charger les Posts lors de l'initialisation
 loadPosts();
+
+// Appeler la fonction pour charger les amis dans la sidebar
+listFriendsSidebar();
