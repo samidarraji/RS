@@ -324,24 +324,65 @@ header nav .dropdown-menu ul li:hover {
   margin: 14px;
 }
 
-.sidebar {
+main .sidebar {
   width: 25%;
   padding: 20px;
   background-color: #ffffff;
 }
 
-.gauche {
+main .gauche {
   margin-right: 10px;
 }
 
-.droite {
+main .droite {
   margin-left: 10px;
 }
+
+/** Liste d'amis dans le sidebar gauche */
+.friends-section {
+  padding: 15px;
+  /*border: 1px solid #ddd;*/
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+#friends-container{
+  margin-top: 15px;
+}
+
+.friend {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.friend-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-info strong {
+  font-size: 1rem;
+  color: #333;
+}
+
+.friend-info small {
+  font-size: 0.8rem;
+  color: #666;
+}
+
 
 .block-radius {
   border-radius: 15px;
 }
-
+/* main css*/
 main {
   display: flex;
   margin: 40px 20px 20px;
@@ -791,10 +832,12 @@ header nav .icone-search{
     margin-bottom: 10px;
     margin-top: 10px;
     order: 2;
+    width: 100%;
   }
   main .droite {
     margin-left: 0px;
     order: 3;
+    width: 100%;
   }
   .main_wrraper .profil {
     display: flex;
@@ -815,15 +858,7 @@ header nav .icone-search{
     width: 94%;
   }
 }
-
-div#masqueUL {
-  width: 99vw;
-  height: 100vh;
-  z-index: 200;
-  display: none;
-  position: absolute;
-}
-
+/** */
 @media screen and (max-width: 500px) {
   header {
     flex-wrap: wrap;
@@ -856,4 +891,11 @@ div#masqueUL {
   header .search{
     display: block !important;
   }
+}
+div#masqueUL {
+  width: 99vw;
+  height: 100vh;
+  z-index: 200;
+  display: none;
+  position: absolute;
 }
