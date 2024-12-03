@@ -61,7 +61,6 @@ cancelShareBtn.addEventListener('click', function() {
     cancelShareBtn.style.opacity = 0;
     writPostDiv.style.minHeight = "0px"; 
     writPostDiv.style.opacity = 0; 
-    //writPostDiv.style.height = "0px"; 
 
     inputWriteText.style.height = "0px";
     inputWriteText.style.opacity = 0;
@@ -74,8 +73,12 @@ cancelShareBtn.addEventListener('click', function() {
 /**********************************/  
 /**********************************/
 // Timeline
-  const userIDAdmin = 4;
-  async function loadPosts() {
+
+/** L'ID du l'utilisateur principal */
+const userIDAdmin = 4;
+
+// Fonction pour charger les posts  
+async function loadPosts() {
       try {
           // Charger les posts depuis le JSON local
           const response = await fetch('./dist/js/posts.json');
@@ -156,8 +159,8 @@ cancelShareBtn.addEventListener('click', function() {
       } catch (error) {
           console.error('Erreur lors du chargement des posts :', error);
       }
-  }
-  loadPosts();
+}
+
 // Fonction pour Retrouver les utilisateurs 
  async function findUsers(id) {
       // Charger les utilisateurs depuis le JSON local
@@ -178,6 +181,7 @@ cancelShareBtn.addEventListener('click', function() {
           name: user.author.name, picture: user.author.profilePicture // Assurez-vous d'utiliser la bonne propriété
       };
 }
+
 // Fonction pour charger les utilisateurs 
 async function loadUsers() {
     try {
@@ -186,6 +190,18 @@ async function loadUsers() {
         return users;  // Retourner tous les utilisateurs
     } catch (error) {
         console.error('Erreur lors du chargement des utilisateurs:', error);
+        return [];  // Retourne un tableau vide en cas d'erreur
+    }
+}
+
+// Fonction pour charger les utilisateurs 
+async function loadFriends() {
+    try {
+        const response = await fetch('./dist/js/friends.json');
+        const friends = await response.json();
+        return friends;  // Retourner tous les utilisateurs
+    } catch (error) {
+        console.error('Erreur lors du chargement des amis:', error);
         return [];  // Retourne un tableau vide en cas d'erreur
     }
 }
@@ -277,6 +293,7 @@ async function loadMessages() {
         for (const message of messages) {
             // Récupérer les données de l'utilisateur de manière asynchrone
             const user = await findUsers(message.senderID); // Chargement de l'utilisateur par son ID
+            
 
             // Créer l'élément li pour le message
             const li = document.createElement('li');
@@ -304,6 +321,74 @@ async function loadMessages() {
     }
 }
 
+ // Fonction pour rechercher des utilisateurs en fonction du texte saisi
+async function searchUsers() {
+    const searchTerm = document.getElementById('search-friend').value.toLowerCase();
+    const resultsContainer = document.getElementById('user-results');
+    const deleteBtn = document.getElementById('delete-txt-search-friend');
+
+    // Afficher ou cacher le bouton de suppression selon si la barre de recherche est vide ou non
+    if (searchTerm === "") {
+        deleteBtn.style.opacity = 0; // Cacher le bouton de suppression si rien n'est saisi
+    } else {
+        deleteBtn.style.opacity = 1; // Afficher le bouton de suppression si du texte est saisi
+    }
+
+    try {
+        // Charger les utilisateurs depuis le fichier JSON
+        const users = await loadUsers(); // Charger tous les utilisateurs
+        const friends = await loadFriends() // Charger tous les amis
+
+        // Filtrer les utilisateurs qui correspondent à la recherche
+        const filteredUsers = users.filter(user => user.author.name.toLowerCase().includes(searchTerm));
+
+        // Afficher les résultats de la recherche
+        resultsContainer.innerHTML = ''; // Réinitialiser le conteneur de résultats
+        if (filteredUsers.length > 0) {
+            filteredUsers.forEach(user => {
+                
+                const userElement = document.createElement('div');
+                userElement.classList.add('user-result');
+
+                // Trouver si l'utilisateur dans votre liste d'amis
+                 const friend = friends.find(friend => friend.id === user.id);
+                 
+                 if(friend){
+                    //console.log(user.id + " est dans votre liste d'amis: " +friend.id);
+                        userElement.innerHTML = `
+                        <a href="#" class="link-profil-friend">
+                            <img src="${user.author.profilePicture}" alt="${user.author.name}">
+                            <h4>${user.author.name}</h4>
+                        </a>`;
+                
+                    
+                 }else{
+                    userElement.innerHTML = `
+                    <a href="#" class="link-profil-friend">
+                        <img src="${user.author.profilePicture}" alt="${user.author.name}">
+                        <h4>${user.author.name}</h4>
+                    </a>
+                    <a href="#" class="btn-add-friend">
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                    </a>`;
+                 }
+                 
+
+                
+                
+                document.getElementById('masqueUL').style.display = 'block';
+                resultsContainer.appendChild(userElement);
+            });
+        } else {
+            resultsContainer.innerHTML = '<p>Aucun utilisateur trouvé.</p>';
+        }
+    } catch (error) {
+        console.error('Erreur lors de la recherche des utilisateurs:', error);
+    }
+}
+
 // Fonction pour gérer l'affichage du dropdown
 function toggleDropdown(element) {
     
@@ -325,6 +410,16 @@ function toggleDropdown(element) {
     }
 }
 
+// Effacer le texte de la barre de recherche
+function clearSearch() {
+    document.getElementById('search-friend').value = '';
+    //searchUsers(); // Rechercher à nouveau pour afficher tous les utilisateurs
+    const resultsContainer = document.getElementById('user-results');
+    resultsContainer.innerHTML = "";
+    document.querySelector('#delete-txt-search-friend').style.opacity=0;
+}
+
+
 // Gestion du clic sur l'icône pour masquer le dropdown en dehor de header
 document.getElementById('masqueUL').addEventListener('click', (event) => {
     event.preventDefault(); // Empêche le comportement par défaut du lien
@@ -334,56 +429,11 @@ document.getElementById('masqueUL').addEventListener('click', (event) => {
     clearSearch();
 });
 
+/************************* */
+/*** CHARGER MES FONCTIONS */
+
 // Charger les messages lors de l'initialisation
 loadMessages();
 
-
- // Fonction pour rechercher des utilisateurs en fonction du texte saisi
-async function searchUsers() {
-    const searchTerm = document.getElementById('search-friend').value.toLowerCase();
-    const resultsContainer = document.getElementById('user-results');
-    const deleteBtn = document.getElementById('delete-txt-search-friend');
-
-    // Afficher ou cacher le bouton de suppression selon si la barre de recherche est vide ou non
-    if (searchTerm === "") {
-        deleteBtn.style.opacity = 0; // Cacher le bouton de suppression si rien n'est saisi
-    } else {
-        deleteBtn.style.opacity = 1; // Afficher le bouton de suppression si du texte est saisi
-    }
-
-    try {
-        // Charger les utilisateurs depuis le fichier JSON
-        const users = await loadUsers(); // Charger tous les utilisateurs
-
-        // Filtrer les utilisateurs qui correspondent à la recherche
-        const filteredUsers = users.filter(user => user.author.name.toLowerCase().includes(searchTerm));
-
-        // Afficher les résultats de la recherche
-        resultsContainer.innerHTML = ''; // Réinitialiser le conteneur de résultats
-        if (filteredUsers.length > 0) {
-            filteredUsers.forEach(user => {
-                const userElement = document.createElement('div');
-                userElement.classList.add('user-result');
-                userElement.innerHTML = `
-                    <img src="${user.author.profilePicture}" alt="${user.author.name}">
-                    <h4>${user.author.name}</h4>
-                `;
-                document.getElementById('masqueUL').style.display = 'block';
-                resultsContainer.appendChild(userElement);
-            });
-        } else {
-            resultsContainer.innerHTML = '<p>Aucun utilisateur trouvé.</p>';
-        }
-    } catch (error) {
-        console.error('Erreur lors de la recherche des utilisateurs:', error);
-    }
-}
-
-// Effacer le texte de la barre de recherche
-function clearSearch() {
-    document.getElementById('search-friend').value = '';
-    //searchUsers(); // Rechercher à nouveau pour afficher tous les utilisateurs
-    const resultsContainer = document.getElementById('user-results');
-    resultsContainer.innerHTML = "";
-}
-
+// Charger les Posts lors de l'initialisation
+loadPosts();
