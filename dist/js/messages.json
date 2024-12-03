@@ -1,5 +1,5 @@
 [
-    { "id": 1, "message": "Bonjour, comment ça va ?", "senderID": 2, "unread": "yes"  },
+    { "id": 1, "message": "oui super , et toi ?", "senderID": 2, "unread": "yes"  },
     { "id": 2, "message": "Voici votre commande, elle est prête.", "senderID": 3, "unread": "yes" },
     { "id": 3, "message": "N'oubliez pas notre rendez-vous demain.", "senderID": 5, "unread": "yes" },
     { "id": 4, "message": "Votre abonnement a été mis à jour.", "senderID": 7, "unread": "no" }

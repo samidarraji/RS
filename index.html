@@ -29,11 +29,14 @@
         </Section>
         <!-- navigation -->
         <nav>
+            <!-- boutton search -->
             <a href="#" class="icone-search" id="icone-search">
                 <span class="material-symbols-outlined">
                     search
                 </span>
             </a>
+
+            <!-- Message dropdown -->
             <div class="dropdown">
                 <a href="#" id="dropdownButtonMessage" class="headerBtn" onclick="toggleDropdown(1)">
                     <span class="material-symbols-outlined">mail</span>
@@ -44,6 +47,8 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Notifications dropdown -->
             <div class="dropdown">
                 <a href="#" id="dropdownButtonMessage" class="headerBtn" onclick="toggleDropdown(2)">
                     <span class="material-symbols-outlined">notifications</span>
@@ -51,13 +56,31 @@
                 <div id="dropdownMenuNotification" class="dropdown-menu">
                     <ul id="ulNotifications">
                         <!-- Les notifiacations seront ajoutés ici via JavaScript -->
-                         <li> Demande d'ajout de la part de Patrice</li>                      
-                         <li> tu as reçu un like sur ...</li>                      
-                         <li> Sophie Muller à commenter ton post</li>                      
+                         <li>
+                            <span class="material-symbols-outlined">
+                            person_add
+                            </span>
+                            <p>
+                             Demande d'ajout de la part de Patrice
+                            </p>
+                         </li>                      
+                         <li>
+                            <span class="material-symbols-outlined">
+                                thumb_up
+                            </span>
+                            <p>tu as reçu un like sur ...</p>
+                        </li>                      
+                         <li> 
+                            <span class="material-symbols-outlined">
+                                edit_note
+                                </span>
+                            <p>Sophie Muller à commenter ton post</p>
+                        </li>                      
                     </ul>
                 </div>
             </div>
-              
+            
+            <!-- Settings menu -->
             <a href="#">
                 <span class="material-symbols-outlined">
                     settings
@@ -70,6 +93,23 @@
     <div class="main_wrraper" >
         <div id="masqueUL"></div>
 
+        <!-- Conteneur pour la boîte de chat -->
+        <div id="chat-box" class="chat-box hidden">
+            <div class="chat-header">
+                <div class="chat-user-info">
+                    <img id="chat-user-avatar" class="chat-user-avatar" src="" alt="">
+                    <span id="chat-user-name"></span>
+                </div>
+                <button onclick="closeChat()" class="chat-close-btn">✕</button>
+            </div>
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Tapez votre message...">
+                <button onclick="sendMessage()" class="chat-send-btn">Envoyer</button>
+            </div>
+        </div>
+        
+        
         <!-- Profil and banner -->
         <div class="profil">
             <div class="cover">
