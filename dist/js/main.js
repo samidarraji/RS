@@ -178,7 +178,7 @@ async function loadPosts() {
       }
   
       return {
-          name: user.author.name, picture: user.author.profilePicture // Assurez-vous d'utiliser la bonne propriété
+          name: user.author.name, picture: user.author.profilePicture, id: user.id // Assurez-vous d'utiliser la bonne propriété
       };
 }
 
@@ -294,7 +294,6 @@ async function loadMessages() {
             // Récupérer les données de l'utilisateur de manière asynchrone
             const user = await findUsers(message.senderID); // Chargement de l'utilisateur par son ID
             
-
             // Créer l'élément li pour le message
             const li = document.createElement('li');
             if(message.unread === "yes"){
@@ -302,8 +301,8 @@ async function loadMessages() {
             }
             li.innerHTML = `
                 <div class="author">
-                    <img src="${user.picture}" alt="${user.name}" class="profile-picture">
-                    <span class="message-text">${message.message}</span>
+                        <img src="${user.picture}" alt="${user.name}" class="profile-picture">
+                        <span class="message-text">${message.message}</span>
                 </div>
             `;
 
@@ -312,7 +311,8 @@ async function loadMessages() {
 
             // Ajouter un gestionnaire d'événements si tu veux faire quelque chose avec le message
             li.addEventListener('click', () => {
-                alert(`Message sélectionné : ${message.message}`);
+               // alert(`Message sélectionné : ${message.message}`);
+               openChat(user.id, user.name);
                 li.classList.remove("unread");
             });
         }
@@ -446,7 +446,6 @@ async function listFriendsSidebar() {
                             <button class="material-symbols-outlined" onclick="openChat(${friend.id}, '${friend.author.name}')">
                                 chat
                             </button>
-                            
                         </div>
                         <small>Ajouté le : ${new Date(friend.date).toLocaleDateString()}</small>
                         
