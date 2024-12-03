@@ -361,7 +361,7 @@ async function searchUsers() {
                                 <img src="${user.author.profilePicture}" alt="${user.author.name}">
                                 <h4>${user.author.name}</h4>
                             </a>
-                            <a href="#" class="btn-chat">
+                            <a  class="btn-chat" onclick="openChat(${friend.id}, '${friend.author.name}')">
                                 <span class="material-symbols-outlined">
                                     chat
                                 </span>
@@ -443,7 +443,7 @@ async function listFriendsSidebar() {
                     <div class="friend-info">
                         <div class="menu">
                         <strong>${friend.author.name}</strong>
-                            <button class="material-symbols-outlined">
+                            <button class="material-symbols-outlined" onclick="openChat(${friend.id}, '${friend.author.name}')">
                                 chat
                             </button>
                             
@@ -462,6 +462,68 @@ async function listFriendsSidebar() {
         console.error('Erreur lors du chargement des amis :', error);
     }
 }
+
+// Fonction pour ouvrir la boite de chat
+async function openChat(userId, userName) {
+    document.getElementById('chat-box').classList.remove('hidden');
+    document.getElementById('chat-user-name').textContent = userName;
+
+    // Ajouter la photo de profil
+    const responseUsers = await fetch('./dist/js/users.json');
+    const users = await responseUsers.json();
+    const user = users.find(user => user.id === userId);
+    const avatar = user ? user.author.profilePicture : './dist/img/default-profile.jpg';
+    document.getElementById('chat-user-avatar').src = avatar;
+
+    // Charger les messages
+    try {
+        const responseChats = await fetch('./dist/js/chat.json');
+        const chats = await responseChats.json();
+        const messagesContainer = document.getElementById('chat-messages');
+        messagesContainer.innerHTML = '';
+
+        const userChats = chats.find(chat => chat.messages.some(msg => msg.userID === userId));
+        if (userChats) {
+            userChats.messages.forEach(message => {
+                const isCurrentUser = message.userID === 4;
+                const messageHTML = `
+                    <div class="message ${isCurrentUser ? 'my-message' : 'their-message'}">
+                        <p>${message.text}</p>
+                        <small>${new Date(message.date).toLocaleString()}</small>
+                    </div>
+                `;
+                messagesContainer.innerHTML += messageHTML;
+            });
+        } else {
+            messagesContainer.innerHTML = '<p>Aucun message disponible</p>';
+        }
+    } catch (error) {
+        console.error('Erreur lors du chargement des messages :', error);
+    }
+}
+
+// Fonction pour fermer la boite de chat
+function closeChat() {
+    document.getElementById('chat-box').classList.add('hidden');
+}
+
+// Fonction pour envoyer les messages
+function sendMessage() {
+    const inputField = document.getElementById('chat-input-field');
+    const messageText = inputField.value.trim();
+    if (!messageText) return;
+
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageHTML = `
+        <div class="message my-message">
+            <p>${messageText}</p>
+            <small>${new Date().toLocaleString()}</small>
+        </div>
+    `;
+    messagesContainer.innerHTML += messageHTML;
+    inputField.value = '';
+}
+
 
 
 
