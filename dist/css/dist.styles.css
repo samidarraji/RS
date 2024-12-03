@@ -732,6 +732,83 @@ main .add-comment button:active {
   background-color: #004080;
 }
 
+/** Search friend bar */
+header .search #search-bar {
+  position: relative;
+  width: 300px;
+}
+
+header .search #search-bar #search-friend {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+header .search #search-bar #delete-txt-search-friend {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 7;
+  color: #000000;
+}
+
+header .search #user-results {
+    margin-top: 8px;
+    position: absolute;
+    background: #ffffff;
+    min-width: 300px;
+    border-radius: 8px;
+    color: #5e5def;
+    overflow: hidden;
+}
+
+header .search #user-results .user-result {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  cursor: pointer;
+  justify-content: space-between;
+}
+header .search #user-results .user-result:hover {
+  background: #9a9af582 ;
+}
+header .search #user-results .user-result a{
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+}
+header .search #user-results .user-result  .link-profil-friend {
+  width: calc(100% - 50px);
+  justify-content: start;
+}
+header .search #user-results .user-result .btn-add-friend {
+  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+
+}
+header .search #user-results .user-result .btn-add-friend .material-symbols-outlined{
+  font-size: 30px !important;
+}
+
+header .search #user-results .user-result img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+header .search #user-results .user-result h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
 /** css for tablette and mobile */
 @media screen and (max-width: 700px) {
   header {
@@ -778,53 +855,28 @@ div#masqueUL {
   position: absolute;
 }
 
-#search-bar {
-  position: relative;
-  width: 300px;
+@media screen and (max-width: 500px) {
+  header {
+    flex-wrap: wrap;
+  }
+  header .logo{
+    width: 50%;
+  }
+  header nav{
+    width: 50%;
+    justify-content: end;
+  }
+  header .search{
+    margin-top: 5px;
+    order: 3;
+    width: 100%;
+  }
+  header .search #search-bar{
+    width: 100%;
+  }
+  header .search #user-results{
+    width: 95%;
+    min-width: auto;
+  }
 }
 
-#search-friend {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-}
-
-#delete-txt-search-friend {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
-  z-index: 7;
-  color: #000000;
-}
-
-#user-results {
-    margin-top: 20px;
-    position: absolute;
-    background: #ffffff;
-    min-width: 300px;
-    border-radius: 30px;
-    color: #5e5def;
-}
-
-.user-result {
-  display: flex;
-  align-items: center;
-  padding: 7px;
-}
-
-.user-result img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.user-result h4 {
-  margin: 0;
-  font-size: 18px;
-}
