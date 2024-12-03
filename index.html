@@ -16,7 +16,7 @@
             <img src="./dist/img/image.png" alt="AZUR TECH" srcset="">
         </div>
         <!--search bar -->
-        <Section class="search">
+        <Section class="search" id="search">
                 <div id="search-bar">
                     <input type="text" placeholder="Search..." id="search-friend" onkeyup="searchUsers()">
                     <span class="material-symbols-outlined btn-delete" id="delete-txt-search-friend" style="opacity: 0;" onclick="clearSearch()">
@@ -29,6 +29,11 @@
         </Section>
         <!-- navigation -->
         <nav>
+            <a href="#" class="icone-search" id="icone-search">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </a>
             <div class="dropdown">
                 <a href="#" id="dropdownButtonMessage" class="headerBtn" onclick="toggleDropdown(1)">
                     <span class="material-symbols-outlined">mail</span>

@@ -1,0 +1,55 @@
+[
+    {
+        "discussionID": 1,
+        "messages": [
+            {
+                "MessageID": 1, 
+                "userID": 2, 
+                "text": "Hello Sami!",
+                "date": "2024-11-21 10:00:00"
+            },
+            {
+                "idMessage": 2,
+                "userID": 4,
+                "text": "Hi Jean, ça va!",
+                "date": "2024-11-21 11:30:00"
+            },
+            {
+                "MessageID": 3, 
+                "userID": 2, 
+                "text": "oui super , et toi ?",
+                "date": "2024-11-21 10:00:00"
+            }
+        ]
+    },
+    {
+        "discussionID": 2,
+        "messages": [
+            {
+                "MessageID": 1, 
+                "userID": 4, 
+                "text": "Hello Sophie!",
+                "date": "2024-11-22 10:00:00"
+            },
+            {
+                "idMessage": 2,
+                "userID": 3,
+                "text": "Hi Sami!",
+                "date": "2024-11-22 12:30:00"
+            },
+            {
+                "MessageID": 3, 
+                "userID": 4, 
+                "text": "Je cherche un travail, tu peux m'aider?, ",
+                "date": "2024-11-21 12:40:00"
+            },
+            {
+                "MessageID": 4, 
+                "userID": 4, 
+                "text": "tu as des contacts ?, ",
+                "date": "2024-11-21 12:41:00"
+            }
+        ]
+    }
+    
+]
