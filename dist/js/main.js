@@ -591,18 +591,16 @@ async function loadGallery() {
 
     // Tableau des noms d'images dans le dossier "img"
     const imageNames = [
-        'pexels-julias-torten-und-tortchen-434418-16637519.jpg',
-        'pexels-leonhellegers-28903591.jpg',
-        'pexels-silviopelegrin-29169114.jpg',
-        'pexels-tobiasbjorkli-3846447.jpg',
-        'pexels-julias-torten-und-tortchen-434418-16637519.jpg',
-        'pexels-leonhellegers-28903591.jpg',
-        'pexels-silviopelegrin-29169114.jpg',
-        'pexels-tobiasbjorkli-3846447.jpg'
+        'post/pexels-julias-torten-und-tortchen-434418-16637519.jpg',
+        'post/pexels-leonhellegers-28903591.jpg',
+        'post/pexels-silviopelegrin-29169114.jpg',
+        'post/pexels-tobiasbjorkli-3846447.jpg',
+        'pict_profil2.jpg',
+        'pict_profil.jpg'
     ];
 
     // Chemin vers le dossier des images
-    const imgPath = './dist/img/post/';
+    const imgPath = './dist/img/';
 
     // Ajouter chaque image à la galerie
     imageNames.forEach(imageName => {
@@ -619,6 +617,63 @@ async function loadGallery() {
 
 // Charger la galerie au chargement de la page
 document.addEventListener('DOMContentLoaded', loadGallery);
+
+
+let reactions = { like: 0, love: 0, dislike: 0 };
+
+function openModal(photoSrc) {
+    const modal = document.getElementById('photo-modal');
+    const modalPhoto = document.getElementById('modal-photo');
+    modalPhoto.src = photoSrc;
+
+    // Réinitialiser les réactions
+    reactions = { like: 0, love: 0, dislike: 0 };
+    document.getElementById('like-count').textContent = reactions.like;
+    document.getElementById('love-count').textContent = reactions.love;
+    document.getElementById('dislike-count').textContent = reactions.dislike;
+
+    modal.classList.remove('hidden');
+}
+
+function closeModal() {
+    const modal = document.getElementById('photo-modal');
+    modal.classList.add('hidden');
+}
+
+function addReaction(type) {
+    if (reactions[type] !== undefined) {
+        reactions[type]++;
+        document.getElementById(`${type}-count`).textContent = reactions[type];
+    }
+}
+
+function addComment() {
+    const commentInput = document.getElementById('comment-input');
+    const commentText = commentInput.value.trim();
+    if (!commentText) return;
+
+    const commentsList = document.getElementById('comments-list');
+    const commentHTML = `
+        <div class="comment">
+            <strong>Vous</strong>: ${commentText} <small>${new Date().toLocaleDateString()}</small>
+        </div>
+    `;
+    commentsList.innerHTML += commentHTML;
+    commentInput.value = '';
+}
+
+// Associer la modal à la galerie
+function attachGalleryEvents() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => openModal(item.src));
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadGallery(); // Charger les images
+    attachGalleryEvents(); // Ajouter les événements
+});
 
 
 /************************* */
