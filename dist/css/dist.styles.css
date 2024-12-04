@@ -75,6 +75,14 @@ header nav .dropdown-menu {
   z-index: 100;
   overflow: hidden;
 }
+#dropdownMenuMessage{
+  width: 300px;
+}
+#dropdownMenuMessage ul li .author .message-text{
+    overflow: auto;
+    width: 211px;
+    height: 30px;
+}
 header nav .dropdown-menu ul {
   list-style: none;
   padding: 0;
@@ -103,9 +111,19 @@ header nav .dropdown-menu ul li {
   font-size: 12px;
 }
 header nav .dropdown-menu ul .unread{
+  position: relative;
   background: #c7c7e069  !important;
 }
-
+header nav .dropdown-menu ul .unread:after{
+  position: absolute;
+  content: '✉️';
+  width: 30px;
+  height: 30px;
+  display: flex;
+  top: 12px;
+  right: 0;
+  font-size: 20px;
+}
 header nav .dropdown-menu ul li .author img{
   width: 30px;
   height: 30px;
@@ -1078,4 +1096,52 @@ div#masqueUL {
   z-index: 200;
   display: none;
   position: absolute;
+}
+
+/** Galerie photos **/
+.photo-gallery {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo-gallery h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
 }
