@@ -137,7 +137,7 @@
             <aside class="sidebar gauche block-radius">
                 
                 <div class="friends-section" id="friends-list">
-                    <h2>Amis</h2>         
+                    <h3>Amis</h3>         
                     <div id="friends-container">
 
                     </div>
@@ -189,6 +189,47 @@
                     <div id="gallery-container" class="gallery-container"></div>
                 </div>                
             </aside>
+
+            <!-- Modal photos sidebar -->
+            <div id="photo-modal" class="photo-modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">✕</span>
+                    <div class="modal-body">
+                        <!-- Colonne gauche : Photo -->
+                        <div class="modal-photo-container">
+                            <img id="modal-photo" src="" alt="Photo">
+                            <div class="modal-reactions">
+                                <button onclick="addReaction('like')">👍 <span id="like-count">0</span></button>
+                                <button onclick="addReaction('love')">❤️ <span id="love-count">0</span></button>
+                                <button onclick="addReaction('dislike')">👎 <span id="dislike-count">0</span></button>
+                            </div>
+                        </div>
+            
+                        <!-- Colonne droite : Réactions et commentaires -->
+                        <div class="modal-comments-container">
+                            
+                            <div class="modal-comments">
+                                <h3>Commentaires</h3>
+                                <div id="comments-list">
+                                    <!-- Liste des commentaires -->
+                                    <div class="comment">
+                                        <strong>Jean Dupont</strong>: Belle photo ! <small>2024-12-03</small>
+                                    </div>
+                                    <div class="comment">
+                                        <strong>Marie Leblanc</strong>: J'adore cet endroit 😍 <small>2024-12-03</small>
+                                    </div>
+                                </div>
+                                <div class="add-comment">
+                                    <input type="text" id="comment-input" placeholder="Votre commentaire...">
+                                    <button onclick="addComment()">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
         </main>
     
     </div>
