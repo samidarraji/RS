@@ -524,7 +524,49 @@ function sendMessage() {
 }
 
 
+// Envoyer le message et l'insérer dans le fichier json = (probleme insertion)
+/*
+async function sendMessage() {
+    const inputField = document.getElementById('chat-input-field');
+    const messageText = inputField.value.trim();
+    const chatId = 1; // ID de la conversation, à adapter dynamiquement
+    const userId = 4; // ID de l'utilisateur actuel (vous)
 
+    if (!messageText) return;
+
+    // Ajouter le message dans l'interface utilisateur
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageHTML = `
+        <div class="message my-message">
+            <p>${messageText}</p>
+            <small>${new Date().toLocaleString()}</small>
+        </div>
+    `;
+    messagesContainer.innerHTML += messageHTML;
+    inputField.value = '';
+
+    // Envoyer le message au serveur
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chatId: chatId,
+                userID: userId,
+                text: messageText
+            })
+        });
+
+        if (!response.ok) {
+            console.error('Erreur lors de l\'ajout du message');
+        }
+    } catch (error) {
+        console.error('Erreur réseau :', error);
+    }
+}
+*/
 
 // Gestion du clic sur l'icône pour masquer le dropdown en dehor de header
 document.getElementById('masqueUL').addEventListener('click', (event) => {
@@ -542,6 +584,42 @@ document.getElementById('icone-search').addEventListener('click', (event) => {
     search.style.display = search.style.display === 'block' ? 'none' : 'block';
     masqueSearch.style.display = masqueSearch.style.display === 'block' ? 'none' : 'block';
 });
+
+// Fonction pour creer un galerie photo dans le sidebar droite
+async function loadGallery() {
+    const galleryContainer = document.getElementById('gallery-container');
+
+    // Tableau des noms d'images dans le dossier "img"
+    const imageNames = [
+        'pexels-julias-torten-und-tortchen-434418-16637519.jpg',
+        'pexels-leonhellegers-28903591.jpg',
+        'pexels-silviopelegrin-29169114.jpg',
+        'pexels-tobiasbjorkli-3846447.jpg',
+        'pexels-julias-torten-und-tortchen-434418-16637519.jpg',
+        'pexels-leonhellegers-28903591.jpg',
+        'pexels-silviopelegrin-29169114.jpg',
+        'pexels-tobiasbjorkli-3846447.jpg'
+    ];
+
+    // Chemin vers le dossier des images
+    const imgPath = './dist/img/post/';
+
+    // Ajouter chaque image à la galerie
+    imageNames.forEach(imageName => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+            <img src="${imgPath}${imageName}" alt="Image" loading="lazy">
+        `;
+
+        // Ajouter l'élément dans le conteneur
+        galleryContainer.appendChild(galleryItem);
+    });
+}
+
+// Charger la galerie au chargement de la page
+document.addEventListener('DOMContentLoaded', loadGallery);
+
 
 /************************* */
 /*** CHARGER MES FONCTIONS */
